@@ -602,7 +602,14 @@ async function saveRecord() {
     dest: $('inp-dest').value.trim(),
     note: $('inp-note').value.trim()
   };
-  records.push(rec);
+  // 同じ日があれば上書き、なければ追加
+  const existing = records.findIndex(r => r.date === date);
+  if (existing !== -1) {
+    rec.id = records[existing].id;
+    records[existing] = rec;
+  } else {
+    records.push(rec);
+  }
   records.sort((a, b) => b.date.localeCompare(a.date));
   saveRec();
 
