@@ -518,12 +518,15 @@ async function sendToSheet(data) {
   if (!url) return;
   setSync('sending', '⏳ シートに送信中…');
   try {
-    await fetch(url, {
-      method: 'POST', mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    setSync('ok', '✅ スプレッドシートに記録しました');
+    // GASはCORSが制限されるためURLパラメータ経由でGETする
+    const params = encodeURIComponent(JSON.stringify(data));
+    const res = await fetch(url + '?data=' + params);
+    const json = await res.json();
+    if (json.result === 'ok') {
+      setSync('ok', '✅ スプレッドシートに記録しました');
+    } else {
+      setSync('err', '⚠️ 送信失敗：' + (json.message||''));
+    }
   } catch(e) {
     setSync('err', '⚠️ 送信失敗（ローカルには保存済み）');
   }
