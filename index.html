@@ -28,9 +28,6 @@
     --purple: #6040a0;
     --purple-pale: #ede8f8;
     --purple-border: #a888e0;
-    --teal: #1a7a6a;
-    --teal-pale: #d8f0ec;
-    --teal-border: #5abcaa;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -46,7 +43,7 @@
     position: sticky; top: 0; z-index: 100;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   }
-  header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; }
+  header h1 { font-size: 1.15rem; font-weight: 700; }
   header .sub { font-size: 0.75rem; opacity: 0.8; margin-top: 2px; }
 
   .tabs {
@@ -64,31 +61,20 @@
   .panel.active { display: block; }
 
   .card {
-    background: var(--white); margin: 14px 14px 0;
-    border-radius: 16px; padding: 18px;
+    background: var(--white); margin: 12px 14px 0;
+    border-radius: 16px; padding: 16px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.07);
     border: 1px solid var(--border);
   }
-  .card-title {
-    font-size: 0.88rem; font-weight: 700; color: var(--green);
-    margin-bottom: 16px;
-  }
-  .card-title.teal { color: var(--teal); }
+  .card-title { font-size: 0.88rem; font-weight: 700; color: var(--green); margin-bottom: 14px; }
 
-  .field { margin-bottom: 14px; }
+  .field { margin-bottom: 12px; }
   .field:last-child { margin-bottom: 0; }
-  label.lbl {
-    display: block; font-size: 0.8rem; font-weight: 600;
-    color: var(--text-muted); margin-bottom: 5px;
-  }
+  label.lbl { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; }
   .hint-label { font-size: 0.7rem; color: var(--brown-light); margin-left: 5px; font-weight: 400; }
 
-  input[type="date"],
-  input[type="number"],
-  input[type="text"],
-  textarea {
-    width: 100%;
-    border: 1.5px solid var(--border); border-radius: 10px;
+  input[type="date"], input[type="number"], input[type="text"], textarea {
+    width: 100%; border: 1.5px solid var(--border); border-radius: 10px;
     padding: 12px 13px; font-size: 1.05rem;
     font-family: 'Nunito', sans-serif; font-weight: 700;
     color: var(--text); background: var(--cream);
@@ -97,11 +83,9 @@
   }
   input[type="date"] { font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 1rem; font-weight: 500; }
   input[type="text"] { font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 1rem; font-weight: 500; }
-  textarea { font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 0.95rem; font-weight: 400; resize: vertical; min-height: 64px; }
+  textarea { font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 0.95rem; font-weight: 400; resize: vertical; min-height: 60px; }
   input:focus, textarea:focus { outline: none; border-color: var(--green-mid); background: var(--white); }
-
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
 
   /* 受粉フィールド */
   .pollination-field input { border-color: var(--purple-border); background: var(--purple-pale); }
@@ -110,149 +94,117 @@
 
   /* 読み取り専用 */
   .readonly-val {
-    background: var(--gold-pale) !important;
-    color: var(--gold) !important;
-    border-color: var(--gold-border) !important;
-    font-weight: 800 !important;
-    cursor: default;
+    background: var(--gold-pale) !important; color: var(--gold) !important;
+    border-color: var(--gold-border) !important; font-weight: 800 !important; cursor: default;
   }
 
-  /* 出荷先セクション */
-  .section-header {
+  /* 出荷先カード */
+  .dest-card {
+    background: var(--white); margin: 10px 14px 0;
+    border-radius: 14px; border: 1.5px solid var(--border);
+    overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .dest-card-header {
     display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 12px;
+    padding: 12px 16px;
+    border-bottom: 1.5px solid var(--border);
+    cursor: pointer; user-select: none;
   }
-  .section-title {
-    font-size: 0.88rem; font-weight: 700;
-  }
-  .section-title.chokubai { color: var(--green); }
-  .section-title.marche { color: var(--teal); }
+  .dest-card-header.active { background: var(--green-xpale); border-bottom-color: var(--green-pale); }
+  .dest-name { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+  .dest-card-header.active .dest-name { color: var(--green); }
 
-  /* マルシェトグル */
-  .toggle-wrap { display: flex; align-items: center; gap: 8px; }
-  .toggle-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
+  /* トグル */
   .toggle {
     position: relative; width: 44px; height: 24px;
     background: var(--border); border-radius: 12px;
-    cursor: pointer; transition: background 0.2s;
-    flex-shrink: 0;
+    cursor: pointer; transition: background 0.2s; flex-shrink: 0;
   }
-  .toggle.on { background: var(--teal); }
+  .toggle.on { background: var(--green-mid); }
   .toggle::after {
-    content: ''; position: absolute;
-    width: 18px; height: 18px; border-radius: 50%;
-    background: white; top: 3px; left: 3px;
-    transition: transform 0.2s;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    content: ''; position: absolute; width: 18px; height: 18px;
+    border-radius: 50%; background: white; top: 3px; left: 3px;
+    transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   }
   .toggle.on::after { transform: translateX(20px); }
 
-  .marche-fields { display: none; }
-  .marche-fields.open { display: block; }
-
-  /* マルシェ入力フィールド */
-  .marche-section input[type="number"] {
-    border-color: var(--teal-border);
-    background: var(--teal-pale);
+  .dest-fields { display: none; padding: 14px 16px; }
+  .dest-fields.open { display: block; }
+  .dest-mini-sales {
+    font-family: 'Nunito', sans-serif; font-size: 0.9rem;
+    font-weight: 800; color: var(--gold);
+    margin-left: 8px;
   }
-  .marche-section input[type="number"]:focus {
-    border-color: var(--teal); background: var(--white);
-  }
-  .marche-section label.lbl { color: var(--teal); }
 
-  /* 売上バッジ */
+  /* 売上合計バッジ */
   .sales-badge {
     background: var(--gold-pale); border: 1.5px solid var(--gold-border);
     border-radius: 12px; padding: 14px 16px;
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 14px;
   }
-  .sales-badge .sb-label { font-size: 0.82rem; color: var(--gold); font-weight: 600; }
-  .sales-badge .sb-sub { font-size: 0.7rem; color: #a07820; margin-top: 2px; }
-  .sales-badge .sb-val {
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.9rem; font-weight: 800; color: var(--gold);
-  }
+  .sb-label { font-size: 0.82rem; color: var(--gold); font-weight: 600; }
+  .sb-sub { font-size: 0.7rem; color: #a07820; margin-top: 2px; }
+  .sb-val { font-family: 'Nunito', sans-serif; font-size: 1.9rem; font-weight: 800; color: var(--gold); }
 
-  .divider { border: none; border-top: 1px dashed var(--border); margin: 16px 0; }
+  .divider { border: none; border-top: 1px dashed var(--border); margin: 14px 0; }
 
   .btn-primary {
     width: 100%; padding: 16px; background: var(--green-mid); color: white;
     border: none; border-radius: 12px; font-size: 1.05rem;
     font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700;
-    cursor: pointer; margin-top: 4px; letter-spacing: 0.04em;
+    cursor: pointer; letter-spacing: 0.04em;
   }
   .btn-primary:active { background: var(--green); }
 
   .sync-status {
-    display: flex; align-items: center; gap: 6px;
-    font-size: 0.78rem; color: var(--text-muted);
-    margin-top: 8px; justify-content: center; min-height: 20px;
+    display: flex; align-items: center; gap: 6px; font-size: 0.78rem;
+    color: var(--text-muted); margin-top: 8px; justify-content: center; min-height: 20px;
   }
   .sync-status.ok { color: var(--green); }
   .sync-status.err { color: var(--danger); }
   .sync-status.sending { color: var(--brown); }
 
   /* 集計 */
-  .sum-section { margin: 14px 14px 0; }
+  .sum-section { margin: 12px 14px 0; }
   .sum-section h2 {
     font-size: 0.72rem; font-weight: 700; color: var(--text-muted);
-    letter-spacing: 0.08em; text-transform: uppercase;
-    margin-bottom: 6px; padding-left: 2px;
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; padding-left: 2px;
   }
-  .s-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 11px 0; border-bottom: 1px solid var(--border);
-  }
+  .s-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
   .s-row:last-child { border-bottom: none; }
-  .s-lbl { font-size: 0.92rem; color: var(--text-muted); }
+  .s-lbl { font-size: 0.9rem; color: var(--text-muted); }
   .s-val { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1.2rem; }
   .s-val.green { color: var(--green); }
   .s-val.gold { color: var(--gold); }
-  .s-val.brown { color: var(--brown); }
   .s-val.purple { color: var(--purple); }
-  .s-val.teal { color: var(--teal); }
-  .s-divider { border-top: 1px dashed var(--border); margin: 4px 0; }
+  .s-divider { border-top: 1px dashed var(--border); margin: 2px 0; }
 
   /* 履歴 */
-  .log-wrap { padding: 14px 14px 0; }
+  .log-wrap { padding: 12px 14px 0; }
   .log-item {
-    background: var(--white); border-radius: 14px;
-    padding: 14px; margin-bottom: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-    border: 1px solid var(--border);
+    background: var(--white); border-radius: 14px; padding: 14px;
+    margin-bottom: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); border: 1px solid var(--border);
   }
-  .log-header {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    margin-bottom: 12px;
-  }
+  .log-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
   .log-date { font-size: 0.92rem; font-weight: 700; }
-  .log-sales-big { font-family: 'Nunito', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--gold); }
-
-  /* 基本情報行 */
-  .log-basic { display: grid; grid-template-columns: repeat(3,1fr); gap:4px; margin-bottom: 10px; }
-  .log-num { text-align: center; }
-  .ln-l { font-size: 0.62rem; color: var(--text-muted); font-weight: 600; margin-bottom: 2px; }
-  .ln-v { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1.2rem; }
-  .ln-v.g { color: var(--green); }
-  .ln-v.pu { color: var(--purple); }
-
-  /* 出荷先行 */
-  .log-dest-section {
-    border-radius: 10px; padding: 10px;
-    margin-bottom: 8px;
+  .log-total-sales { font-family: 'Nunito', sans-serif; font-size: 1.15rem; font-weight: 800; color: var(--gold); }
+  .log-basic { display: flex; gap: 16px; margin-bottom: 10px; }
+  .log-basic-item { font-size: 0.85rem; }
+  .log-basic-item .lbi-l { color: var(--text-muted); font-size: 0.72rem; font-weight: 600; }
+  .log-basic-item .lbi-v { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1.1rem; }
+  .lbi-v.g { color: var(--green); }
+  .lbi-v.pu { color: var(--purple); }
+  .log-dest-rows { display: flex; flex-direction: column; gap: 6px; }
+  .log-dest-row {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+    gap: 4px; align-items: center;
+    background: var(--green-xpale); border-radius: 8px; padding: 8px 10px;
+    font-size: 0.82rem;
   }
-  .log-dest-section.chokubai { background: var(--green-xpale); }
-  .log-dest-section.marche { background: var(--teal-pale); }
-  .log-dest-title { font-size: 0.72rem; font-weight: 700; margin-bottom: 8px; }
-  .log-dest-title.chokubai { color: var(--green); }
-  .log-dest-title.marche { color: var(--teal); }
-  .log-dest-nums { display: grid; grid-template-columns: repeat(4,1fr); gap: 4px; }
-  .log-dest-num { text-align: center; }
-  .ldn-l { font-size: 0.6rem; color: var(--text-muted); font-weight: 600; margin-bottom: 1px; }
-  .ldn-v { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1.05rem; }
-  .ldn-v.go { color: var(--gold); }
-
+  .log-dest-row .dr-name { font-weight: 700; color: var(--green); font-size: 0.85rem; }
+  .log-dest-row .dr-val { text-align: center; font-family: 'Nunito', sans-serif; font-weight: 700; }
+  .log-dest-row .dr-label { text-align: center; font-size: 0.62rem; color: var(--text-muted); font-weight: 600; }
+  .log-dest-row .dr-sales { text-align: right; font-family: 'Nunito', sans-serif; font-weight: 800; color: var(--gold); }
   .log-note { font-size: 0.82rem; color: var(--text-muted); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
   .log-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 10px; }
   .btn-edit, .btn-del {
@@ -270,43 +222,39 @@
   .set-row:last-child { border-bottom: none; }
   .set-lbl { font-size: 0.92rem; font-weight: 600; }
   .set-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
-  .set-row input[type="number"] { width: 100px; text-align: right; padding: 9px 11px; }
-  .set-row input[type="text"] { width: 100%; font-size: 0.82rem; font-family: monospace; font-weight: 400; }
+  .set-row input[type="number"] { width: 90px; text-align: right; padding: 9px 11px; }
+  .set-row input[type="text"] { font-size: 0.82rem; font-family: monospace; font-weight: 400; }
   .gas-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .dest-setting-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .dest-setting-item:last-child { border-bottom: none; }
+  .dest-setting-name { flex: 1; font-size: 0.92rem; font-weight: 600; }
+  .dest-setting-price { width: 90px; text-align: right; padding: 8px 10px; font-size: 0.95rem; }
+  .btn-rm { background: var(--danger-pale); color: var(--danger); border: 1px solid #f0a8a0; border-radius: 6px; padding: 5px 12px; font-size: 0.78rem; cursor: pointer; white-space: nowrap; }
+  .dest-add-row { display: flex; gap: 8px; margin-top: 12px; align-items: center; }
+  .dest-add-row input[type="text"] { flex: 2; font-family: 'Zen Kaku Gothic New', sans-serif; }
+  .dest-add-row input[type="number"] { width: 80px; text-align: right; }
+  .btn-add { padding: 11px 14px; background: var(--green-xpale); color: var(--green); border: 1.5px solid var(--green-light); border-radius: 10px; font-size: 0.85rem; font-weight: 700; cursor: pointer; white-space: nowrap; }
 
   /* モーダル */
-  .overlay {
-    display: none; position: fixed; inset: 0;
-    background: rgba(0,0,0,0.48); z-index: 200;
-    align-items: flex-end; justify-content: center;
-  }
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.48); z-index: 200; align-items: flex-end; justify-content: center; }
   .overlay.open { display: flex; }
-  .modal {
-    background: var(--white); width: 100%; max-width: 500px;
-    border-radius: 20px 20px 0 0;
-    padding: 22px 18px 36px; max-height: 92vh; overflow-y: auto;
-  }
+  .modal { background: var(--white); width: 100%; max-width: 500px; border-radius: 20px 20px 0 0; padding: 22px 18px 36px; max-height: 92vh; overflow-y: auto; }
   .modal h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 16px; }
   .modal-btns { display: flex; gap: 10px; margin-top: 16px; }
-  .btn-cancel {
-    flex: 1; padding: 13px; background: var(--cream-dark); color: var(--text-muted);
-    border: 1.5px solid var(--border); border-radius: 10px;
-    font-size: 0.95rem; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 600; cursor: pointer;
-  }
+  .btn-cancel { flex: 1; padding: 13px; background: var(--cream-dark); color: var(--text-muted); border: 1.5px solid var(--border); border-radius: 10px; font-size: 0.95rem; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 600; cursor: pointer; }
   .modal-btns .btn-primary { flex: 2; margin-top: 0; }
-  .btn-danger {
-    flex: 2; padding: 13px; background: var(--danger); color: white;
-    border: none; border-radius: 10px;
-    font-size: 0.95rem; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; cursor: pointer;
-  }
+  .btn-danger { flex: 2; padding: 13px; background: var(--danger); color: white; border: none; border-radius: 10px; font-size: 0.95rem; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; cursor: pointer; }
   .del-text { font-size: 0.95rem; line-height: 1.7; margin-bottom: 4px; }
+
+  /* 編集モーダル内の出荷先 */
+  .edit-dest-section { background: var(--green-xpale); border-radius: 12px; padding: 12px; margin-top: 10px; }
+  .edit-dest-title { font-size: 0.82rem; font-weight: 700; color: var(--green); margin-bottom: 10px; }
+
   .empty { text-align: center; padding: 48px 20px; color: var(--text-muted); }
   .empty .ico { font-size: 2.8rem; margin-bottom: 10px; }
-
-  /* 編集モーダル内のマルシェ */
-  .edit-marche { background: var(--teal-pale); border-radius: 12px; padding: 14px; margin-top: 10px; }
-  .edit-marche label.lbl { color: var(--teal); }
-  .edit-marche input[type="number"] { border-color: var(--teal-border); }
 </style>
 </head>
 <body>
@@ -327,12 +275,10 @@
 <div id="tab-record" class="panel active">
   <div class="card" style="margin-top:14px;">
     <div class="card-title">🌿 基本情報</div>
-
     <div class="field">
       <label class="lbl">日付</label>
       <input type="date" id="inp-date">
     </div>
-
     <div class="grid2 field">
       <div class="pollination-field">
         <label class="lbl">🌸 受粉 (本)</label>
@@ -345,82 +291,15 @@
     </div>
   </div>
 
-  <!-- 直売所セクション -->
-  <div class="card">
-    <div class="section-header">
-      <div class="section-title chokubai">🏪 直売所</div>
-    </div>
-
-    <div class="grid2 field">
-      <div>
-        <label class="lbl">出荷 (本)</label>
-        <input type="number" id="c-ship" min="0" placeholder="0" oninput="calcChokubai()">
-      </div>
-      <div>
-        <label class="lbl">残数 (本)</label>
-        <input type="number" id="c-stock" min="0" placeholder="0" oninput="calcChokubai()">
-      </div>
-    </div>
-    <div class="grid2 field">
-      <div>
-        <label class="lbl">販売本数（自動）</label>
-        <input type="number" id="c-sold" class="readonly-val" readonly placeholder="—">
-      </div>
-      <div>
-        <label class="lbl">単価 (円/本)</label>
-        <input type="number" id="c-price" min="0" placeholder="150" oninput="calcChokubai()">
-      </div>
-    </div>
-    <div class="field">
-      <label class="lbl">直売所 売上（自動）</label>
-      <input type="number" id="c-sales" class="readonly-val" readonly placeholder="—">
-    </div>
-  </div>
-
-  <!-- マルシェセクション -->
-  <div class="card marche-section">
-    <div class="section-header">
-      <div class="section-title marche">🛒 マルシェ</div>
-      <div class="toggle-wrap">
-        <span class="toggle-label" id="marche-toggle-label">今日なし</span>
-        <div class="toggle" id="marche-toggle" onclick="toggleMarche()"></div>
-      </div>
-    </div>
-
-    <div class="marche-fields" id="marche-fields">
-      <div class="grid2 field">
-        <div>
-          <label class="lbl">出荷 (本)</label>
-          <input type="number" id="m-ship" min="0" placeholder="0" oninput="calcMarche()">
-        </div>
-        <div>
-          <label class="lbl">残数 (本)</label>
-          <input type="number" id="m-stock" min="0" placeholder="0" oninput="calcMarche()">
-        </div>
-      </div>
-      <div class="grid2 field">
-        <div>
-          <label class="lbl">販売本数（自動）</label>
-          <input type="number" id="m-sold" class="readonly-val" readonly placeholder="—">
-        </div>
-        <div>
-          <label class="lbl">単価 (円/本)</label>
-          <input type="number" id="m-price" min="0" placeholder="150" oninput="calcMarche()">
-        </div>
-      </div>
-      <div class="field">
-        <label class="lbl">マルシェ 売上（自動）</label>
-        <input type="number" id="m-sales" class="readonly-val" readonly placeholder="—">
-      </div>
-    </div>
-  </div>
+  <!-- 出荷先カード（動的生成） -->
+  <div id="dest-cards"></div>
 
   <!-- 売上合計 -->
   <div class="card">
-    <div class="sales-badge" style="margin-bottom:0;">
+    <div class="sales-badge">
       <div>
         <div class="sb-label">売上合計</div>
-        <div class="sb-sub">直売所 + マルシェ</div>
+        <div class="sb-sub" id="sales-dest-summary">—</div>
       </div>
       <div class="sb-val" id="total-sales-display">— 円</div>
     </div>
@@ -440,45 +319,15 @@
 <div id="tab-summary" class="panel">
   <div class="sum-section" style="margin-top:14px;">
     <h2>本日</h2>
-    <div class="card" style="margin:0;">
-      <div class="s-row"><span class="s-lbl">🌸 受粉</span><span class="s-val purple" id="s-tp">—</span></div>
-      <div class="s-row"><span class="s-lbl">収穫</span><span class="s-val green" id="s-th">—</span></div>
-      <div class="s-divider"></div>
-      <div class="s-row"><span class="s-lbl">🏪 直売所 販売</span><span class="s-val green" id="s-tc-sold">—</span></div>
-      <div class="s-row"><span class="s-lbl">🏪 直売所 売上</span><span class="s-val gold" id="s-tc-sales">—</span></div>
-      <div class="s-row"><span class="s-lbl">🛒 マルシェ 販売</span><span class="s-val teal" id="s-tm-sold">—</span></div>
-      <div class="s-row"><span class="s-lbl">🛒 マルシェ 売上</span><span class="s-val gold" id="s-tm-sales">—</span></div>
-      <div class="s-divider"></div>
-      <div class="s-row"><span class="s-lbl">売上合計</span><span class="s-val gold" id="s-tt">—</span></div>
-    </div>
+    <div class="card" style="margin:0;" id="sum-today"></div>
   </div>
   <div class="sum-section">
     <h2>今週（直近7日）</h2>
-    <div class="card" style="margin:0;">
-      <div class="s-row"><span class="s-lbl">🌸 受粉合計</span><span class="s-val purple" id="s-wp">0</span></div>
-      <div class="s-row"><span class="s-lbl">収穫合計</span><span class="s-val green" id="s-wh">0</span></div>
-      <div class="s-divider"></div>
-      <div class="s-row"><span class="s-lbl">🏪 直売所 販売</span><span class="s-val green" id="s-wc-sold">0</span></div>
-      <div class="s-row"><span class="s-lbl">🏪 直売所 売上</span><span class="s-val gold" id="s-wc-sales">0</span></div>
-      <div class="s-row"><span class="s-lbl">🛒 マルシェ 販売</span><span class="s-val teal" id="s-wm-sold">0</span></div>
-      <div class="s-row"><span class="s-lbl">🛒 マルシェ 売上</span><span class="s-val gold" id="s-wm-sales">0</span></div>
-      <div class="s-divider"></div>
-      <div class="s-row"><span class="s-lbl">売上合計</span><span class="s-val gold" id="s-wt">0</span></div>
-    </div>
+    <div class="card" style="margin:0;" id="sum-week"></div>
   </div>
   <div class="sum-section">
     <h2>累計（全期間）</h2>
-    <div class="card" style="margin:0;">
-      <div class="s-row"><span class="s-lbl">🌸 受粉累計</span><span class="s-val purple" id="s-ap">0</span></div>
-      <div class="s-row"><span class="s-lbl">収穫累計</span><span class="s-val green" id="s-ah">0</span></div>
-      <div class="s-divider"></div>
-      <div class="s-row"><span class="s-lbl">🏪 直売所 販売累計</span><span class="s-val green" id="s-ac-sold">0</span></div>
-      <div class="s-row"><span class="s-lbl">🏪 直売所 売上累計</span><span class="s-val gold" id="s-ac-sales">0</span></div>
-      <div class="s-row"><span class="s-lbl">🛒 マルシェ 販売累計</span><span class="s-val teal" id="s-am-sold">0</span></div>
-      <div class="s-row"><span class="s-lbl">🛒 マルシェ 売上累計</span><span class="s-val gold" id="s-am-sales">0</span></div>
-      <div class="s-divider"></div>
-      <div class="s-row"><span class="s-lbl">売上累計</span><span class="s-val gold" id="s-at">0</span></div>
-    </div>
+    <div class="card" style="margin:0;" id="sum-total"></div>
   </div>
 </div>
 
@@ -490,14 +339,12 @@
 <!-- ===== 設定タブ ===== -->
 <div id="tab-settings" class="panel">
   <div class="card" style="margin-top:14px;">
-    <div class="card-title">💴 デフォルト単価</div>
-    <div class="set-row">
-      <div><div class="set-lbl">直売所 単価（円/本）</div></div>
-      <input type="number" id="set-c-price" min="0" oninput="saveSettings()">
-    </div>
-    <div class="set-row">
-      <div><div class="set-lbl">マルシェ 単価（円/本）</div></div>
-      <input type="number" id="set-m-price" min="0" oninput="saveSettings()">
+    <div class="card-title">🚚 出荷先リスト</div>
+    <div id="dest-settings-list"></div>
+    <div class="dest-add-row">
+      <input type="text" id="new-dest-name" placeholder="出荷先名">
+      <input type="number" id="new-dest-price" min="0" placeholder="単価">
+      <button class="btn-add" onclick="addDest()">追加</button>
     </div>
   </div>
   <div class="card">
@@ -528,31 +375,7 @@
         <input type="number" id="edit-harvest" min="0">
       </div>
     </div>
-
-    <div style="font-size:0.82rem;font-weight:700;color:var(--green);margin:12px 0 8px;">🏪 直売所</div>
-    <div class="grid2 field">
-      <div><label class="lbl">出荷</label><input type="number" id="edit-c-ship" min="0" oninput="editCalcC()"></div>
-      <div><label class="lbl">残数</label><input type="number" id="edit-c-stock" min="0" oninput="editCalcC()"></div>
-    </div>
-    <div class="grid2 field">
-      <div><label class="lbl">販売</label><input type="number" id="edit-c-sold" class="readonly-val" readonly></div>
-      <div><label class="lbl">単価</label><input type="number" id="edit-c-price" min="0" oninput="editCalcC()"></div>
-    </div>
-    <div class="field"><label class="lbl">直売所売上</label><input type="number" id="edit-c-sales" class="readonly-val" readonly></div>
-
-    <div class="edit-marche">
-      <div style="font-size:0.82rem;font-weight:700;color:var(--teal);margin-bottom:10px;">🛒 マルシェ（空欄=なし）</div>
-      <div class="grid2 field">
-        <div><label class="lbl">出荷</label><input type="number" id="edit-m-ship" min="0" oninput="editCalcM()"></div>
-        <div><label class="lbl">残数</label><input type="number" id="edit-m-stock" min="0" oninput="editCalcM()"></div>
-      </div>
-      <div class="grid2 field">
-        <div><label class="lbl">販売</label><input type="number" id="edit-m-sold" class="readonly-val" readonly></div>
-        <div><label class="lbl">単価</label><input type="number" id="edit-m-price" min="0" oninput="editCalcM()"></div>
-      </div>
-      <div class="field"><label class="lbl">マルシェ売上</label><input type="number" id="edit-m-sales" class="readonly-val" readonly></div>
-    </div>
-
+    <div id="edit-dest-sections"></div>
     <div class="field" style="margin-top:12px;"><label class="lbl">メモ</label><textarea id="edit-note"></textarea></div>
     <div class="modal-btns">
       <button class="btn-cancel" onclick="closeModal('edit-overlay')">キャンセル</button>
@@ -575,28 +398,30 @@
 
 <script>
 const $ = id => document.getElementById(id);
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbwWxswBTgl-d3mU1FEMd328hoOtYAMKEbKF_3Ds3IAy9bE9tWt1sXVQDUQubH5JQoJ7/exec';
-let records = JSON.parse(localStorage.getItem('zucchini-v5') || '[]');
-let settings = JSON.parse(localStorage.getItem('zucchini-cfg-v5') || JSON.stringify({
-  chokubaiPrice: 150, marchePrice: 150, gasUrl: GAS_URL
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbzLYiPkbJ7WveM--YGohbTJW2WqbJybL3k9KRT2P82yQ5URl93F8yk5AgwnwfHeIig6/exec';
+
+let records = JSON.parse(localStorage.getItem('zucchini-v6') || '[]');
+let settings = JSON.parse(localStorage.getItem('zucchini-cfg-v6') || JSON.stringify({
+  destinations: [
+    { name: '直売所', price: 150 },
+    { name: 'マルシェ', price: 150 }
+  ],
+  gasUrl: GAS_URL
 }));
 if (!settings.gasUrl) settings.gasUrl = GAS_URL;
-let deleteTargetId = null;
-let marcheOpen = false;
 
-const saveRec = () => localStorage.setItem('zucchini-v5', JSON.stringify(records));
-const saveCfg = () => localStorage.setItem('zucchini-cfg-v5', JSON.stringify(settings));
+let deleteTargetId = null;
+const saveRec = () => localStorage.setItem('zucchini-v6', JSON.stringify(records));
+const saveCfg = () => localStorage.setItem('zucchini-cfg-v6', JSON.stringify(settings));
 const todayStr = () => new Date().toISOString().slice(0, 10);
 const n = v => parseInt(v) || 0;
 
 // ---- 初期化 ----
 (function init() {
   $('inp-date').value = todayStr();
-  $('c-price').value = settings.chokubaiPrice;
-  $('m-price').value = settings.marchePrice;
-  $('set-c-price').value = settings.chokubaiPrice;
-  $('set-m-price').value = settings.marchePrice;
   $('set-gas-url').value = settings.gasUrl;
+  renderDestCards();
+  renderDestSettings();
 })();
 
 // ---- タブ ----
@@ -608,50 +433,83 @@ function switchTab(name) {
   $('tab-'+name).classList.add('active');
   if (name==='summary') updateSummary();
   if (name==='history') renderHistory();
-  if (name==='settings') {
-    $('set-c-price').value = settings.chokubaiPrice;
-    $('set-m-price').value = settings.marchePrice;
-    $('set-gas-url').value = settings.gasUrl;
+  if (name==='settings') { $('set-gas-url').value = settings.gasUrl; renderDestSettings(); }
+}
+
+// ---- 出荷先カード（記録フォーム） ----
+function renderDestCards() {
+  const wrap = $('dest-cards');
+  wrap.innerHTML = settings.destinations.map((dest, i) => `
+    <div class="dest-card" id="dest-card-${i}">
+      <div class="dest-card-header" id="dest-header-${i}" onclick="toggleDestCard(${i})">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="dest-name">${dest.name}</span>
+          <span class="dest-mini-sales" id="dest-mini-${i}"></span>
+        </div>
+        <div class="toggle" id="dest-toggle-${i}"></div>
+      </div>
+      <div class="dest-fields" id="dest-fields-${i}">
+        <div class="grid2 field">
+          <div><label class="lbl">出荷 (本)</label><input type="number" id="ds-${i}-ship" min="0" placeholder="0" oninput="calcDest(${i})"></div>
+          <div><label class="lbl">残数 (本)</label><input type="number" id="ds-${i}-stock" min="0" placeholder="0" oninput="calcDest(${i})"></div>
+        </div>
+        <div class="grid2 field">
+          <div><label class="lbl">販売本数（自動）</label><input type="number" id="ds-${i}-sold" class="readonly-val" readonly placeholder="—"></div>
+          <div><label class="lbl">単価 (円/本)</label><input type="number" id="ds-${i}-price" min="0" value="${dest.price}" oninput="calcDest(${i})"></div>
+        </div>
+        <div class="field">
+          <label class="lbl">売上（自動）</label>
+          <input type="number" id="ds-${i}-sales" class="readonly-val" readonly placeholder="—">
+        </div>
+      </div>
+    </div>
+  `).join('');
+  calcTotal();
+}
+
+function toggleDestCard(i) {
+  const fields = $(`dest-fields-${i}`);
+  const toggle = $(`dest-toggle-${i}`);
+  const header = $(`dest-header-${i}`);
+  const isOpen = fields.classList.contains('open');
+  fields.classList.toggle('open', !isOpen);
+  toggle.classList.toggle('on', !isOpen);
+  header.classList.toggle('active', !isOpen);
+  if (!isOpen) {
+    // 開いたら単価をデフォルトにセット
+    if (!$(`ds-${i}-price`).value) $(`ds-${i}-price`).value = settings.destinations[i].price;
+  } else {
+    // 閉じたら値をクリア
+    [`ds-${i}-ship`,`ds-${i}-stock`,`ds-${i}-sold`,`ds-${i}-sales`].forEach(id => $(id).value = '');
+    $(`dest-mini-${i}`).textContent = '';
+    calcTotal();
   }
 }
 
-// ---- マルシェトグル ----
-function toggleMarche() {
-  marcheOpen = !marcheOpen;
-  const toggle = $('marche-toggle');
-  const fields = $('marche-fields');
-  const label = $('marche-toggle-label');
-  toggle.classList.toggle('on', marcheOpen);
-  fields.classList.toggle('open', marcheOpen);
-  label.textContent = marcheOpen ? '今日あり' : '今日なし';
-  if (marcheOpen) $('m-price').value = settings.marchePrice;
+function calcDest(i) {
+  const ship = n($(`ds-${i}-ship`).value);
+  const stock = n($(`ds-${i}-stock`).value);
+  const price = n($(`ds-${i}-price`).value);
+  const sold = Math.max(0, ship - stock);
+  $(`ds-${i}-sold`).value = sold;
+  $(`ds-${i}-sales`).value = sold * price;
+  $(`dest-mini-${i}`).textContent = sold * price > 0 ? `¥${(sold*price).toLocaleString()}` : '';
   calcTotal();
 }
 
-// ---- 計算 ----
-function calcChokubai() {
-  const ship = n($('c-ship').value);
-  const stock = n($('c-stock').value);
-  const price = n($('c-price').value);
-  const sold = Math.max(0, ship - stock);
-  $('c-sold').value = sold;
-  $('c-sales').value = sold * price;
-  calcTotal();
-}
-function calcMarche() {
-  const ship = n($('m-ship').value);
-  const stock = n($('m-stock').value);
-  const price = n($('m-price').value);
-  const sold = Math.max(0, ship - stock);
-  $('m-sold').value = sold;
-  $('m-sales').value = sold * price;
-  calcTotal();
-}
 function calcTotal() {
-  const cSales = n($('c-sales').value);
-  const mSales = marcheOpen ? n($('m-sales').value) : 0;
-  const total = cSales + mSales;
+  let total = 0;
+  const parts = [];
+  settings.destinations.forEach((dest, i) => {
+    const isOpen = $(`dest-fields-${i}`)?.classList.contains('open');
+    if (isOpen) {
+      const sales = n($(`ds-${i}-sales`)?.value);
+      total += sales;
+      if (sales > 0) parts.push(dest.name);
+    }
+  });
   $('total-sales-display').textContent = total > 0 ? total.toLocaleString()+' 円' : '— 円';
+  $('sales-dest-summary').textContent = parts.length ? parts.join(' + ') : '出荷先を選択してください';
 }
 
 // ---- GAS送信 ----
@@ -673,7 +531,7 @@ async function sendToSheet(data) {
 }
 function setSync(cls, msg) {
   const el = $('sync-status');
-  el.className = 'sync-status' + (cls ? ' '+cls : '');
+  el.className = 'sync-status'+(cls?' '+cls:'');
   el.textContent = msg;
 }
 
@@ -682,154 +540,135 @@ async function saveRecord() {
   const date = $('inp-date').value;
   if (!date) { alert('日付を入力してください'); return; }
 
-  const cShip = n($('c-ship').value);
-  const cStock = n($('c-stock').value);
-  const cPrice = n($('c-price').value);
-  const cSold = Math.max(0, cShip - cStock);
-  const cSales = cSold * cPrice;
+  const destData = [];
+  settings.destinations.forEach((dest, i) => {
+    const isOpen = $(`dest-fields-${i}`)?.classList.contains('open');
+    if (isOpen) {
+      const ship = n($(`ds-${i}-ship`).value);
+      const stock = n($(`ds-${i}-stock`).value);
+      const price = n($(`ds-${i}-price`).value);
+      const sold = Math.max(0, ship - stock);
+      destData.push({ name: dest.name, ship, stock, sold, price, sales: sold * price });
+    }
+  });
 
-  const hasMarche = marcheOpen;
-  const mShip = hasMarche ? n($('m-ship').value) : null;
-  const mStock = hasMarche ? n($('m-stock').value) : null;
-  const mPrice = hasMarche ? n($('m-price').value) : null;
-  const mSold = hasMarche ? Math.max(0, mShip - mStock) : null;
-  const mSales = hasMarche ? mSold * mPrice : null;
-
+  const totalSales = destData.reduce((s, d) => s + d.sales, 0);
   const rec = {
     id: Date.now(), date,
     pollination: n($('inp-pollination').value),
     harvest: n($('inp-harvest').value),
-    chokubai: { ship: cShip, stock: cStock, sold: cSold, price: cPrice, sales: cSales },
-    marche: hasMarche ? { ship: mShip, stock: mStock, sold: mSold, price: mPrice, sales: mSales } : null,
-    total_sales: cSales + (mSales || 0),
+    destinations: destData,
+    total_sales: totalSales,
     note: $('inp-note').value.trim()
   };
 
   // 同じ日は上書き
   const existing = records.findIndex(r => r.date === date);
-  if (existing !== -1) {
-    rec.id = records[existing].id;
-    records[existing] = rec;
-  } else {
-    records.push(rec);
-  }
+  if (existing !== -1) { rec.id = records[existing].id; records[existing] = rec; }
+  else records.push(rec);
   records.sort((a,b) => b.date.localeCompare(a.date));
   saveRec();
 
   // リセット
-  ['inp-harvest','inp-pollination','c-ship','c-stock','c-sold','c-sales',
-   'm-ship','m-stock','m-sold','m-sales','inp-note'].forEach(id => $(id).value = '');
-  $('c-price').value = settings.chokubaiPrice;
-  $('m-price').value = settings.marchePrice;
+  $('inp-harvest').value = ''; $('inp-pollination').value = ''; $('inp-note').value = '';
   $('inp-date').value = todayStr();
-  $('total-sales-display').textContent = '— 円';
-  if (marcheOpen) toggleMarche();
+  renderDestCards();
 
-  // GAS送信用フラット化
-  await sendToSheet({
-    date, pollination: rec.pollination, harvest: rec.harvest,
-    chokubai_ship: cShip, chokubai_stock: cStock, chokubai_sold: cSold,
-    chokubai_price: cPrice, chokubai_sales: cSales,
-    marche_ship: mShip ?? '', marche_stock: mStock ?? '',
-    marche_sold: mSold ?? '', marche_price: mPrice ?? '', marche_sales: mSales ?? '',
-    total_sales: rec.total_sales, note: rec.note
+  // GAS送信（案C：1行目に収穫・受粉、以降は出荷先ごと）
+  const rows = [];
+  destData.forEach((d, i) => {
+    rows.push({
+      type: i === 0 ? '収穫+出荷' : '出荷',
+      pollination: i === 0 ? rec.pollination : '',
+      harvest: i === 0 ? rec.harvest : '',
+      dest: d.name, ship: d.ship, stock: d.stock,
+      sold: d.sold, price: d.price, sales: d.sales,
+      note: i === 0 ? rec.note : ''
+    });
   });
+  if (rows.length === 0) {
+    rows.push({ type: '収穫のみ', pollination: rec.pollination, harvest: rec.harvest, dest:'', ship:'', stock:'', sold:'', price:'', sales:'', note: rec.note });
+  }
+  await sendToSheet({ date, rows });
 }
 
 // ---- 集計 ----
 function updateSummary() {
   const today = todayStr();
   const w = new Date(); w.setDate(w.getDate()-6);
-  const weekStr = w.toISOString().slice(0,10);
-  let tp=0,th=0,tcSold=0,tcSales=0,tmSold=0,tmSales=0,tt=0;
-  let wp=0,wh=0,wcSold=0,wcSales=0,wmSold=0,wmSales=0,wt=0;
-  let ap=0,ah=0,acSold=0,acSales=0,amSold=0,amSales=0,at=0;
+  const weekStr = w.toISOString().slice(0, 10);
 
-  records.forEach(r => {
-    ap+=r.pollination||0; ah+=r.harvest;
-    acSold+=r.chokubai?.sold||0; acSales+=r.chokubai?.sales||0;
-    amSold+=r.marche?.sold||0; amSales+=r.marche?.sales||0;
-    at+=r.total_sales||0;
-    if (r.date===today) {
-      tp=r.pollination||0; th=r.harvest;
-      tcSold=r.chokubai?.sold||0; tcSales=r.chokubai?.sales||0;
-      tmSold=r.marche?.sold||0; tmSales=r.marche?.sales||0;
-      tt=r.total_sales||0;
-    }
-    if (r.date>=weekStr) {
-      wp+=r.pollination||0; wh+=r.harvest;
-      wcSold+=r.chokubai?.sold||0; wcSales+=r.chokubai?.sales||0;
-      wmSold+=r.marche?.sold||0; wmSales+=r.marche?.sales||0;
-      wt+=r.total_sales||0;
-    }
-  });
+  const agg = (filter) => {
+    let p=0,h=0,tt=0;
+    const destMap = {};
+    records.filter(filter).forEach(r => {
+      p += r.pollination||0; h += r.harvest||0; tt += r.total_sales||0;
+      (r.destinations||[]).forEach(d => {
+        if (!destMap[d.name]) destMap[d.name] = { sold:0, sales:0 };
+        destMap[d.name].sold += d.sold||0;
+        destMap[d.name].sales += d.sales||0;
+      });
+    });
+    return { p, h, tt, destMap };
+  };
 
-  const bn = v => v !== 0 ? v+' 本' : '—';
-  const ym = v => v > 0 ? '¥'+v.toLocaleString() : '—';
-  const bna = v => v+' 本';
-  const yma = v => '¥'+v.toLocaleString();
+  const ta = agg(r => r.date === today);
+  const wa = agg(r => r.date >= weekStr);
+  const aa = agg(() => true);
 
-  $('s-tp').textContent=bn(tp); $('s-th').textContent=bn(th);
-  $('s-tc-sold').textContent=bn(tcSold); $('s-tc-sales').textContent=ym(tcSales);
-  $('s-tm-sold').textContent=bn(tmSold); $('s-tm-sales').textContent=ym(tmSales);
-  $('s-tt').textContent=ym(tt);
-  $('s-wp').textContent=bna(wp); $('s-wh').textContent=bna(wh);
-  $('s-wc-sold').textContent=bna(wcSold); $('s-wc-sales').textContent=yma(wcSales);
-  $('s-wm-sold').textContent=bna(wmSold); $('s-wm-sales').textContent=yma(wmSales);
-  $('s-wt').textContent=yma(wt);
-  $('s-ap').textContent=bna(ap); $('s-ah').textContent=bna(ah);
-  $('s-ac-sold').textContent=bna(acSold); $('s-ac-sales').textContent=yma(acSales);
-  $('s-am-sold').textContent=bna(amSold); $('s-am-sales').textContent=yma(amSales);
-  $('s-at').textContent=yma(at);
+  const renderBlock = (id, data, isToday) => {
+    const ym = v => v > 0 ? '¥'+v.toLocaleString() : (isToday ? '—' : '¥0');
+    const bn = v => v > 0 ? v+' 本' : (isToday ? '—' : '0 本');
+    let html = `
+      <div class="s-row"><span class="s-lbl">🌸 受粉</span><span class="s-val purple">${bn(data.p)}</span></div>
+      <div class="s-row"><span class="s-lbl">収穫</span><span class="s-val green">${bn(data.h)}</span></div>
+      <div class="s-divider"></div>`;
+    Object.entries(data.destMap).forEach(([name, d]) => {
+      html += `
+        <div class="s-row"><span class="s-lbl">📦 ${name} 販売</span><span class="s-val green">${bn(d.sold)}</span></div>
+        <div class="s-row"><span class="s-lbl">📦 ${name} 売上</span><span class="s-val gold">${ym(d.sales)}</span></div>`;
+    });
+    html += `<div class="s-divider"></div>
+      <div class="s-row"><span class="s-lbl">売上合計</span><span class="s-val gold">${ym(data.tt)}</span></div>`;
+    $(id).innerHTML = html;
+  };
+
+  renderBlock('sum-today', ta, true);
+  renderBlock('sum-week', wa, false);
+  renderBlock('sum-total', aa, false);
 }
 
 // ---- 履歴 ----
 function renderHistory() {
   const el = $('log-list');
-  if (!records.length) {
-    el.innerHTML='<div class="empty"><div class="ico">🥒</div>まだ記録がありません</div>';
-    return;
-  }
-  el.innerHTML = records.map(r => {
-    const c = r.chokubai || {};
-    const m = r.marche;
-    return `<div class="log-item">
+  if (!records.length) { el.innerHTML='<div class="empty"><div class="ico">🥒</div>まだ記録がありません</div>'; return; }
+  el.innerHTML = records.map(r => `
+    <div class="log-item">
       <div class="log-header">
-        <div>
-          <div class="log-date">${fmtDate(r.date)}</div>
-        </div>
-        <div class="log-sales-big">¥${(r.total_sales||0).toLocaleString()}</div>
+        <div class="log-date">${fmtDate(r.date)}</div>
+        <div class="log-total-sales">¥${(r.total_sales||0).toLocaleString()}</div>
       </div>
       <div class="log-basic">
-        <div class="log-num"><div class="ln-l">🌸受粉</div><div class="ln-v pu">${r.pollination||0}</div></div>
-        <div class="log-num"><div class="ln-l">収穫</div><div class="ln-v g">${r.harvest||0}</div></div>
-        <div class="log-num"><div class="ln-l">　</div><div class="ln-v">　</div></div>
+        <div class="log-basic-item"><div class="lbi-l">🌸 受粉</div><div class="lbi-v pu">${r.pollination||0} 本</div></div>
+        <div class="log-basic-item"><div class="lbi-l">収穫</div><div class="lbi-v g">${r.harvest||0} 本</div></div>
       </div>
-      <div class="log-dest-section chokubai">
-        <div class="log-dest-title chokubai">🏪 直売所</div>
-        <div class="log-dest-nums">
-          <div class="log-dest-num"><div class="ldn-l">出荷</div><div class="ldn-v">${c.ship||0}</div></div>
-          <div class="log-dest-num"><div class="ldn-l">残数</div><div class="ldn-v">${c.stock||0}</div></div>
-          <div class="log-dest-num"><div class="ldn-l">販売</div><div class="ldn-v">${c.sold||0}</div></div>
-          <div class="log-dest-num"><div class="ldn-l">売上</div><div class="ldn-v go">¥${(c.sales||0).toLocaleString()}</div></div>
-        </div>
+      <div class="log-dest-rows">
+        ${(r.destinations||[]).map(d => `
+          <div class="log-dest-row">
+            <div class="dr-name">📦 ${d.name}</div>
+            <div><div class="dr-label">出荷</div><div class="dr-val">${d.ship}</div></div>
+            <div><div class="dr-label">残数</div><div class="dr-val">${d.stock}</div></div>
+            <div><div class="dr-label">販売</div><div class="dr-val">${d.sold}</div></div>
+            <div class="dr-sales">¥${(d.sales||0).toLocaleString()}</div>
+          </div>`).join('')}
       </div>
-      ${m ? `<div class="log-dest-section marche">
-        <div class="log-dest-title marche">🛒 マルシェ</div>
-        <div class="log-dest-nums">
-          <div class="log-dest-num"><div class="ldn-l">出荷</div><div class="ldn-v">${m.ship||0}</div></div>
-          <div class="log-dest-num"><div class="ldn-l">残数</div><div class="ldn-v">${m.stock||0}</div></div>
-          <div class="log-dest-num"><div class="ldn-l">販売</div><div class="ldn-v">${m.sold||0}</div></div>
-          <div class="log-dest-num"><div class="ldn-l">売上</div><div class="ldn-v go">¥${(m.sales||0).toLocaleString()}</div></div>
-        </div>
-      </div>` : ''}
       ${r.note ? `<div class="log-note">📝 ${r.note}</div>` : ''}
       <div class="log-actions">
         <button class="btn-edit" onclick="openEdit(${r.id})">編集</button>
         <button class="btn-del" onclick="openDelete(${r.id},'${r.date}')">削除</button>
       </div>
-    </div>`;
-  }).join('');
+    </div>
+  `).join('');
 }
 
 function fmtDate(s) {
@@ -844,60 +683,74 @@ function openEdit(id) {
   $('edit-date').value = r.date;
   $('edit-pollination').value = r.pollination||0;
   $('edit-harvest').value = r.harvest||0;
-  const c = r.chokubai||{};
-  $('edit-c-ship').value = c.ship||0;
-  $('edit-c-stock').value = c.stock||0;
-  $('edit-c-sold').value = c.sold||0;
-  $('edit-c-price').value = c.price||'';
-  $('edit-c-sales').value = c.sales||'';
-  const m = r.marche;
-  $('edit-m-ship').value = m?.ship ?? '';
-  $('edit-m-stock').value = m?.stock ?? '';
-  $('edit-m-sold').value = m?.sold ?? '';
-  $('edit-m-price').value = m?.price ?? '';
-  $('edit-m-sales').value = m?.sales ?? '';
   $('edit-note').value = r.note||'';
+
+  // 出荷先セクション生成
+  const saved = r.destinations || [];
+  const allDests = settings.destinations.map(d => d.name);
+  // 保存済みにある出荷先 + 設定にある出荷先のunion
+  const editDests = [...new Set([...saved.map(d=>d.name), ...allDests])];
+
+  $('edit-dest-sections').innerHTML = editDests.map(name => {
+    const existing = saved.find(d => d.name === name);
+    const defPrice = settings.destinations.find(d => d.name === name)?.price || 150;
+    return `
+      <div class="edit-dest-section">
+        <div class="edit-dest-title">📦 ${name}</div>
+        <div class="grid2 field">
+          <div><label class="lbl">出荷</label><input type="number" id="ed-${name}-ship" min="0" value="${existing?.ship??''}" oninput="editCalcDest('${name}')"></div>
+          <div><label class="lbl">残数</label><input type="number" id="ed-${name}-stock" min="0" value="${existing?.stock??''}" oninput="editCalcDest('${name}')"></div>
+        </div>
+        <div class="grid2 field">
+          <div><label class="lbl">販売</label><input type="number" id="ed-${name}-sold" class="readonly-val" readonly value="${existing?.sold??''}"></div>
+          <div><label class="lbl">単価</label><input type="number" id="ed-${name}-price" min="0" value="${existing?.price??defPrice}" oninput="editCalcDest('${name}')"></div>
+        </div>
+        <div class="field"><label class="lbl">売上</label><input type="number" id="ed-${name}-sales" class="readonly-val" readonly value="${existing?.sales??''}"></div>
+      </div>`;
+  }).join('');
+
   $('edit-overlay').classList.add('open');
 }
-function editCalcC() {
-  const sold = Math.max(0, n($('edit-c-ship').value) - n($('edit-c-stock').value));
-  const price = n($('edit-c-price').value);
-  $('edit-c-sold').value = sold;
-  $('edit-c-sales').value = sold * price;
-}
-function editCalcM() {
-  const ship = n($('edit-m-ship').value);
-  const stock = n($('edit-m-stock').value);
-  const price = n($('edit-m-price').value);
-  if (!ship && !stock && !price) return;
+
+function editCalcDest(name) {
+  const ship = n($(`ed-${name}-ship`).value);
+  const stock = n($(`ed-${name}-stock`).value);
+  const price = n($(`ed-${name}-price`).value);
   const sold = Math.max(0, ship - stock);
-  $('edit-m-sold').value = sold;
-  $('edit-m-sales').value = sold * price;
+  $(`ed-${name}-sold`).value = sold;
+  $(`ed-${name}-sales`).value = sold * price;
 }
+
 function updateRecord() {
   const id = parseInt($('edit-id').value);
   const idx = records.findIndex(r => r.id===id); if (idx===-1) return;
 
-  const cShip=n($('edit-c-ship').value), cStock=n($('edit-c-stock').value);
-  const cPrice=n($('edit-c-price').value);
-  const cSold=Math.max(0,cShip-cStock), cSales=cSold*cPrice;
+  const allDests = settings.destinations.map(d => d.name);
+  const saved = records[idx].destinations || [];
+  const editDests = [...new Set([...saved.map(d=>d.name), ...allDests])];
 
-  const mShipV=$('edit-m-ship').value, mStockV=$('edit-m-stock').value;
-  const hasM = mShipV!=='' || mStockV!=='';
-  const mShip=n(mShipV), mStock=n(mStockV), mPrice=n($('edit-m-price').value);
-  const mSold=Math.max(0,mShip-mStock), mSales=mSold*mPrice;
+  const destData = [];
+  editDests.forEach(name => {
+    const shipEl = $(`ed-${name}-ship`);
+    if (!shipEl) return;
+    const ship = n(shipEl.value), stock = n($(`ed-${name}-stock`).value);
+    const price = n($(`ed-${name}-price`).value);
+    if (ship > 0 || stock > 0) {
+      const sold = Math.max(0, ship - stock);
+      destData.push({ name, ship, stock, sold, price, sales: sold * price });
+    }
+  });
 
   records[idx] = {
     ...records[idx],
     date: $('edit-date').value,
     pollination: n($('edit-pollination').value),
     harvest: n($('edit-harvest').value),
-    chokubai: { ship:cShip, stock:cStock, sold:cSold, price:cPrice, sales:cSales },
-    marche: hasM ? { ship:mShip, stock:mStock, sold:mSold, price:mPrice, sales:mSales } : null,
-    total_sales: cSales + (hasM ? mSales : 0),
+    destinations: destData,
+    total_sales: destData.reduce((s,d) => s+d.sales, 0),
     note: $('edit-note').value.trim()
   };
-  records.sort((a,b)=>b.date.localeCompare(a.date));
+  records.sort((a,b) => b.date.localeCompare(a.date));
   saveRec(); closeModal('edit-overlay'); renderHistory();
 }
 
@@ -913,11 +766,42 @@ function confirmDelete() {
 }
 
 // ---- 設定 ----
-function saveSettings() {
-  settings.chokubaiPrice = n($('set-c-price').value);
-  settings.marchePrice = n($('set-m-price').value);
-  settings.gasUrl = $('set-gas-url').value.trim();
+function renderDestSettings() {
+  const el = $('dest-settings-list');
+  if (!settings.destinations.length) {
+    el.innerHTML = '<div style="font-size:0.85rem;color:var(--text-muted);padding:8px 0;">登録なし</div>';
+    return;
+  }
+  el.innerHTML = settings.destinations.map((d,i) => `
+    <div class="dest-setting-item">
+      <div class="dest-setting-name">${d.name}</div>
+      <input type="number" class="dest-setting-price" value="${d.price}" min="0"
+        oninput="updateDestPrice(${i}, this.value)" placeholder="単価">
+      <span style="font-size:0.8rem;color:var(--text-muted);">円</span>
+      <button class="btn-rm" onclick="removeDest(${i})">削除</button>
+    </div>`).join('');
+}
+function updateDestPrice(i, val) {
+  settings.destinations[i].price = n(val);
   saveCfg();
+}
+function addDest() {
+  const name = $('new-dest-name').value.trim();
+  const price = n($('new-dest-price').value);
+  if (!name) return;
+  if (!settings.destinations.find(d => d.name === name)) {
+    settings.destinations.push({ name, price: price || 150 });
+    saveCfg();
+  }
+  $('new-dest-name').value = ''; $('new-dest-price').value = '';
+  renderDestSettings(); renderDestCards();
+}
+function removeDest(i) {
+  settings.destinations.splice(i, 1); saveCfg();
+  renderDestSettings(); renderDestCards();
+}
+function saveSettings() {
+  settings.gasUrl = $('set-gas-url').value.trim(); saveCfg();
 }
 
 // ---- モーダル ----
