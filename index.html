@@ -518,15 +518,29 @@ async function sendToSheet(data) {
   if (!url) return;
   setSync('sending', '⏳ シートに送信中…');
   try {
-    // GASはCORSが制限されるためURLパラメータ経由でGETする
-    const params = encodeURIComponent(JSON.stringify(data));
-    const res = await fetch(url + '?data=' + params);
-    const json = await res.json();
-    if (json.result === 'ok') {
-      setSync('ok', '✅ スプレッドシートに記録しました');
-    } else {
-      setSync('err', '⚠️ 送信失敗：' + (json.message||''));
+    // iframeを使ってGASにPOSTする（CORS回避）
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = url;
+    form.target = 'gas-iframe';
+    form.style.display = 'none';
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'payload';
+    input.value = JSON.stringify(data);
+    form.appendChild(input);
+    let iframe = document.getElementById('gas-iframe');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.name = 'gas-iframe';
+      iframe.id = 'gas-iframe';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
     }
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+    setTimeout(() => setSync('ok', '✅ スプレッドシートに記録しました'), 2000);
   } catch(e) {
     setSync('err', '⚠️ 送信失敗（ローカルには保存済み）');
   }
