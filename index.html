@@ -28,44 +28,24 @@
     --purple: #6040a0;
     --purple-pale: #ede8f8;
     --purple-border: #a888e0;
+    --orange: #c05800;
+    --orange-pale: #fff0e0;
+    --orange-border: #e8a060;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Zen Kaku Gothic New', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    min-height: 100vh;
-    padding-bottom: 48px;
-  }
-  header {
-    background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%);
-    color: white; padding: 16px 20px 13px;
-    position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  }
+  body { font-family: 'Zen Kaku Gothic New', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; padding-bottom: 48px; }
+
+  header { background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%); color: white; padding: 16px 20px 13px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
   header h1 { font-size: 1.15rem; font-weight: 700; }
   header .sub { font-size: 0.75rem; opacity: 0.8; margin-top: 2px; }
 
-  .tabs {
-    display: flex; background: var(--white);
-    border-bottom: 2px solid var(--border);
-    position: sticky; top: 62px; z-index: 99;
-  }
-  .tab {
-    flex: 1; padding: 11px 4px; text-align: center;
-    font-size: 0.8rem; font-weight: 600; color: var(--text-muted);
-    cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px;
-  }
+  .tabs { display: flex; background: var(--white); border-bottom: 2px solid var(--border); position: sticky; top: 62px; z-index: 99; }
+  .tab { flex: 1; padding: 11px 4px; text-align: center; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; }
   .tab.active { color: var(--green); border-bottom-color: var(--green-mid); }
   .panel { display: none; }
   .panel.active { display: block; }
 
-  .card {
-    background: var(--white); margin: 12px 14px 0;
-    border-radius: 16px; padding: 16px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-    border: 1px solid var(--border);
-  }
+  .card { background: var(--white); margin: 12px 14px 0; border-radius: 16px; padding: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.07); border: 1px solid var(--border); }
   .card-title { font-size: 0.88rem; font-weight: 700; color: var(--green); margin-bottom: 14px; }
 
   .field { margin-bottom: 12px; }
@@ -87,89 +67,50 @@
   input:focus, textarea:focus { outline: none; border-color: var(--green-mid); background: var(--white); }
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-  /* 受粉フィールド */
   .pollination-field input { border-color: var(--purple-border); background: var(--purple-pale); }
   .pollination-field input:focus { border-color: var(--purple); background: var(--white); }
   .pollination-field label.lbl { color: var(--purple); }
 
-  /* 読み取り専用 */
-  .readonly-val {
-    background: var(--gold-pale) !important; color: var(--gold) !important;
-    border-color: var(--gold-border) !important; font-weight: 800 !important; cursor: default;
-  }
+  .readonly-val { background: var(--gold-pale) !important; color: var(--gold) !important; border-color: var(--gold-border) !important; font-weight: 800 !important; cursor: default; }
 
   /* 出荷先カード */
-  .dest-card {
-    background: var(--white); margin: 10px 14px 0;
-    border-radius: 14px; border: 1.5px solid var(--border);
-    overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .dest-card-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 16px;
-    border-bottom: 1.5px solid var(--border);
-    cursor: pointer; user-select: none;
-  }
+  .dest-card { background: var(--white); margin: 10px 14px 0; border-radius: 14px; border: 1.5px solid var(--border); overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .dest-card-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1.5px solid var(--border); cursor: pointer; user-select: none; }
   .dest-card-header.active { background: var(--green-xpale); border-bottom-color: var(--green-pale); }
   .dest-name { font-size: 0.95rem; font-weight: 700; color: var(--text); }
   .dest-card-header.active .dest-name { color: var(--green); }
-
-  /* トグル */
-  .toggle {
-    position: relative; width: 44px; height: 24px;
-    background: var(--border); border-radius: 12px;
-    cursor: pointer; transition: background 0.2s; flex-shrink: 0;
-  }
+  .dest-mini-sales { font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 800; color: var(--gold); margin-left: 8px; }
+  .toggle { position: relative; width: 44px; height: 24px; background: var(--border); border-radius: 12px; cursor: pointer; transition: background 0.2s; flex-shrink: 0; }
   .toggle.on { background: var(--green-mid); }
-  .toggle::after {
-    content: ''; position: absolute; width: 18px; height: 18px;
-    border-radius: 50%; background: white; top: 3px; left: 3px;
-    transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  }
+  .toggle::after { content: ''; position: absolute; width: 18px; height: 18px; border-radius: 50%; background: white; top: 3px; left: 3px; transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
   .toggle.on::after { transform: translateX(20px); }
-
   .dest-fields { display: none; padding: 14px 16px; }
   .dest-fields.open { display: block; }
-  .dest-mini-sales {
-    font-family: 'Nunito', sans-serif; font-size: 0.9rem;
-    font-weight: 800; color: var(--gold);
-    margin-left: 8px;
-  }
 
-  /* 売上合計バッジ */
-  .sales-badge {
-    background: var(--gold-pale); border: 1.5px solid var(--gold-border);
-    border-radius: 12px; padding: 14px 16px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
+  /* 売上バッジ */
+  .sales-badge { background: var(--gold-pale); border: 1.5px solid var(--gold-border); border-radius: 12px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; }
   .sb-label { font-size: 0.82rem; color: var(--gold); font-weight: 600; }
   .sb-sub { font-size: 0.7rem; color: #a07820; margin-top: 2px; }
   .sb-val { font-family: 'Nunito', sans-serif; font-size: 1.9rem; font-weight: 800; color: var(--gold); }
 
-  .divider { border: none; border-top: 1px dashed var(--border); margin: 14px 0; }
-
-  .btn-primary {
-    width: 100%; padding: 16px; background: var(--green-mid); color: white;
-    border: none; border-radius: 12px; font-size: 1.05rem;
-    font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700;
-    cursor: pointer; letter-spacing: 0.04em;
-  }
+  /* ボタン */
+  .btn-primary { width: 100%; padding: 15px; background: var(--green-mid); color: white; border: none; border-radius: 12px; font-size: 1rem; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; cursor: pointer; letter-spacing: 0.04em; }
   .btn-primary:active { background: var(--green); }
+  .btn-secondary { width: 100%; padding: 15px; background: var(--white); color: var(--green); border: 2px solid var(--green-light); border-radius: 12px; font-size: 1rem; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; cursor: pointer; letter-spacing: 0.04em; }
+  .btn-secondary:active { background: var(--green-xpale); }
+  .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
 
-  .sync-status {
-    display: flex; align-items: center; gap: 6px; font-size: 0.78rem;
-    color: var(--text-muted); margin-top: 8px; justify-content: center; min-height: 20px;
-  }
+  .sync-status { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; justify-content: center; min-height: 20px; }
   .sync-status.ok { color: var(--green); }
   .sync-status.err { color: var(--danger); }
   .sync-status.sending { color: var(--brown); }
 
+  /* 未送信バッジ */
+  .unsent-badge { display: inline-block; background: var(--orange-pale); color: var(--orange); border: 1px solid var(--orange-border); border-radius: 6px; font-size: 0.7rem; font-weight: 700; padding: 2px 7px; margin-left: 6px; vertical-align: middle; }
+
   /* 集計 */
   .sum-section { margin: 12px 14px 0; }
-  .sum-section h2 {
-    font-size: 0.72rem; font-weight: 700; color: var(--text-muted);
-    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; padding-left: 2px;
-  }
+  .sum-section h2 { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; padding-left: 2px; }
   .s-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
   .s-row:last-child { border-bottom: none; }
   .s-lbl { font-size: 0.9rem; color: var(--text-muted); }
@@ -181,57 +122,41 @@
 
   /* 履歴 */
   .log-wrap { padding: 12px 14px 0; }
-  .log-item {
-    background: var(--white); border-radius: 14px; padding: 14px;
-    margin-bottom: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); border: 1px solid var(--border);
-  }
+  .log-item { background: var(--white); border-radius: 14px; padding: 14px; margin-bottom: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); border: 1px solid var(--border); }
+  .log-item.unsent { border-color: var(--orange-border); }
   .log-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
   .log-date { font-size: 0.92rem; font-weight: 700; }
   .log-total-sales { font-family: 'Nunito', sans-serif; font-size: 1.15rem; font-weight: 800; color: var(--gold); }
   .log-basic { display: flex; gap: 16px; margin-bottom: 10px; }
-  .log-basic-item { font-size: 0.85rem; }
   .log-basic-item .lbi-l { color: var(--text-muted); font-size: 0.72rem; font-weight: 600; }
   .log-basic-item .lbi-v { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1.1rem; }
   .lbi-v.g { color: var(--green); }
   .lbi-v.pu { color: var(--purple); }
   .log-dest-rows { display: flex; flex-direction: column; gap: 6px; }
-  .log-dest-row {
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
-    gap: 4px; align-items: center;
-    background: var(--green-xpale); border-radius: 8px; padding: 8px 10px;
-    font-size: 0.82rem;
-  }
-  .log-dest-row .dr-name { font-weight: 700; color: var(--green); font-size: 0.85rem; }
-  .log-dest-row .dr-val { text-align: center; font-family: 'Nunito', sans-serif; font-weight: 700; }
-  .log-dest-row .dr-label { text-align: center; font-size: 0.62rem; color: var(--text-muted); font-weight: 600; }
-  .log-dest-row .dr-sales { text-align: right; font-family: 'Nunito', sans-serif; font-weight: 800; color: var(--gold); }
+  .log-dest-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr; gap: 4px; align-items: center; background: var(--green-xpale); border-radius: 8px; padding: 8px 10px; }
+  .dr-name { font-weight: 700; color: var(--green); font-size: 0.85rem; }
+  .dr-val { text-align: center; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.95rem; }
+  .dr-label { text-align: center; font-size: 0.6rem; color: var(--text-muted); font-weight: 600; }
+  .dr-sales { text-align: right; font-family: 'Nunito', sans-serif; font-weight: 800; color: var(--gold); font-size: 0.95rem; }
   .log-note { font-size: 0.82rem; color: var(--text-muted); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
-  .log-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 10px; }
-  .btn-edit, .btn-del {
-    padding: 7px 18px; border-radius: 8px; font-size: 0.82rem;
-    font-weight: 600; cursor: pointer; font-family: 'Zen Kaku Gothic New', sans-serif;
-  }
+  .log-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 10px; flex-wrap: wrap; }
+  .btn-edit, .btn-del, .btn-send { padding: 7px 16px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: 'Zen Kaku Gothic New', sans-serif; }
   .btn-edit { background: var(--green-xpale); color: var(--green); border: 1px solid var(--green-light); }
   .btn-del { background: var(--danger-pale); color: var(--danger); border: 1px solid #f0a8a0; }
+  .btn-send { background: var(--orange-pale); color: var(--orange); border: 1px solid var(--orange-border); }
 
   /* 設定 */
-  .set-row {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 0; border-bottom: 1px solid var(--border); gap: 10px;
-  }
+  .set-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); gap: 10px; }
   .set-row:last-child { border-bottom: none; }
   .set-lbl { font-size: 0.92rem; font-weight: 600; }
   .set-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
   .set-row input[type="number"] { width: 90px; text-align: right; padding: 9px 11px; }
   .set-row input[type="text"] { font-size: 0.82rem; font-family: monospace; font-weight: 400; }
   .gas-row { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .dest-setting-item {
-    display: flex; align-items: center; gap: 8px;
-    padding: 10px 0; border-bottom: 1px solid var(--border);
-  }
+  .dest-setting-item { display: flex; align-items: center; gap: 8px; padding: 10px 0; border-bottom: 1px solid var(--border); }
   .dest-setting-item:last-child { border-bottom: none; }
   .dest-setting-name { flex: 1; font-size: 0.92rem; font-weight: 600; }
-  .dest-setting-price { width: 90px; text-align: right; padding: 8px 10px; font-size: 0.95rem; }
+  .dest-setting-price { width: 80px; text-align: right; padding: 8px 10px; font-size: 0.95rem; }
   .btn-rm { background: var(--danger-pale); color: var(--danger); border: 1px solid #f0a8a0; border-radius: 6px; padding: 5px 12px; font-size: 0.78rem; cursor: pointer; white-space: nowrap; }
   .dest-add-row { display: flex; gap: 8px; margin-top: 12px; align-items: center; }
   .dest-add-row input[type="text"] { flex: 2; font-family: 'Zen Kaku Gothic New', sans-serif; }
@@ -243,16 +168,15 @@
   .overlay.open { display: flex; }
   .modal { background: var(--white); width: 100%; max-width: 500px; border-radius: 20px 20px 0 0; padding: 22px 18px 36px; max-height: 92vh; overflow-y: auto; }
   .modal h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 16px; }
-  .modal-btns { display: flex; gap: 10px; margin-top: 16px; }
+  .modal-btns { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
   .btn-cancel { flex: 1; padding: 13px; background: var(--cream-dark); color: var(--text-muted); border: 1.5px solid var(--border); border-radius: 10px; font-size: 0.95rem; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 600; cursor: pointer; }
   .modal-btns .btn-primary { flex: 2; margin-top: 0; }
+  .modal-btns .btn-send-modal { flex: 2; padding: 13px; background: var(--green-mid); color: white; border: none; border-radius: 10px; font-size: 0.95rem; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; cursor: pointer; margin-top: 0; }
   .btn-danger { flex: 2; padding: 13px; background: var(--danger); color: white; border: none; border-radius: 10px; font-size: 0.95rem; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; cursor: pointer; }
   .del-text { font-size: 0.95rem; line-height: 1.7; margin-bottom: 4px; }
-
-  /* 編集モーダル内の出荷先 */
   .edit-dest-section { background: var(--green-xpale); border-radius: 12px; padding: 12px; margin-top: 10px; }
   .edit-dest-title { font-size: 0.82rem; font-weight: 700; color: var(--green); margin-bottom: 10px; }
-
+  .divider { border: none; border-top: 1px dashed var(--border); margin: 14px 0; }
   .empty { text-align: center; padding: 48px 20px; color: var(--text-muted); }
   .empty .ico { font-size: 2.8rem; margin-bottom: 10px; }
 </style>
@@ -271,7 +195,7 @@
   <div class="tab" onclick="switchTab('settings')">⚙️ 設定</div>
 </div>
 
-<!-- ===== 記録タブ ===== -->
+<!-- 記録タブ -->
 <div id="tab-record" class="panel active">
   <div class="card" style="margin-top:14px;">
     <div class="card-title">🌿 基本情報</div>
@@ -291,10 +215,8 @@
     </div>
   </div>
 
-  <!-- 出荷先カード（動的生成） -->
   <div id="dest-cards"></div>
 
-  <!-- 売上合計 -->
   <div class="card">
     <div class="sales-badge">
       <div>
@@ -310,12 +232,15 @@
       <label class="lbl">メモ（任意）</label>
       <textarea id="inp-note" placeholder="例）曲がり果2本、雌花少なめ など"></textarea>
     </div>
-    <button class="btn-primary" onclick="saveRecord()">💾 保存する</button>
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="tempSave()">💾 一時保存</button>
+      <button class="btn-primary" onclick="confirmSave()">✅ 確定して送信</button>
+    </div>
     <div class="sync-status" id="sync-status"></div>
   </div>
 </div>
 
-<!-- ===== 集計タブ ===== -->
+<!-- 集計タブ -->
 <div id="tab-summary" class="panel">
   <div class="sum-section" style="margin-top:14px;">
     <h2>本日</h2>
@@ -331,12 +256,12 @@
   </div>
 </div>
 
-<!-- ===== 履歴タブ ===== -->
+<!-- 履歴タブ -->
 <div id="tab-history" class="panel">
   <div class="log-wrap" id="log-list"></div>
 </div>
 
-<!-- ===== 設定タブ ===== -->
+<!-- 設定タブ -->
 <div id="tab-settings" class="panel">
   <div class="card" style="margin-top:14px;">
     <div class="card-title">🚚 出荷先リスト</div>
@@ -352,7 +277,7 @@
     <div class="set-row gas-row">
       <div>
         <div class="set-lbl">GAS ウェブアプリURL</div>
-        <div class="set-sub">保存のたびに自動でシートに送信</div>
+        <div class="set-sub">確定送信時にシートに反映されます</div>
       </div>
       <input type="text" id="set-gas-url" oninput="saveSettings()">
     </div>
@@ -379,7 +304,8 @@
     <div class="field" style="margin-top:12px;"><label class="lbl">メモ</label><textarea id="edit-note"></textarea></div>
     <div class="modal-btns">
       <button class="btn-cancel" onclick="closeModal('edit-overlay')">キャンセル</button>
-      <button class="btn-primary" onclick="updateRecord()">更新する</button>
+      <button class="btn-primary" onclick="updateRecord(false)" style="flex:1.5;margin-top:0;">一時保存</button>
+      <button class="btn-send-modal" onclick="updateRecord(true)">確定送信</button>
     </div>
   </div>
 </div>
@@ -396,16 +322,16 @@
   </div>
 </div>
 
+<!-- iframeはGAS送信用 -->
+<iframe name="gas-iframe" id="gas-iframe" style="display:none;"></iframe>
+
 <script>
 const $ = id => document.getElementById(id);
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbzLYiPkbJ7WveM--YGohbTJW2WqbJybL3k9KRT2P82yQ5URl93F8yk5AgwnwfHeIig6/exec';
 
 let records = JSON.parse(localStorage.getItem('zucchini-v6') || '[]');
 let settings = JSON.parse(localStorage.getItem('zucchini-cfg-v6') || JSON.stringify({
-  destinations: [
-    { name: '直売所', price: 150 },
-    { name: 'マルシェ', price: 150 }
-  ],
+  destinations: [{ name: '直売所', price: 150 }, { name: 'マルシェ', price: 150 }],
   gasUrl: GAS_URL
 }));
 if (!settings.gasUrl) settings.gasUrl = GAS_URL;
@@ -424,6 +350,16 @@ const n = v => parseInt(v) || 0;
   renderDestSettings();
 })();
 
+// ---- 日付自動更新（タブ切替・画面復帰時） ----
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) refreshDate();
+});
+function refreshDate() {
+  const today = todayStr();
+  const dateEl = $('inp-date');
+  if (dateEl && dateEl.value !== today) dateEl.value = today;
+}
+
 // ---- タブ ----
 function switchTab(name) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -431,12 +367,13 @@ function switchTab(name) {
   const names = ['record','summary','history','settings'];
   document.querySelectorAll('.tab')[names.indexOf(name)].classList.add('active');
   $('tab-'+name).classList.add('active');
+  refreshDate();
   if (name==='summary') updateSummary();
   if (name==='history') renderHistory();
   if (name==='settings') { $('set-gas-url').value = settings.gasUrl; renderDestSettings(); }
 }
 
-// ---- 出荷先カード（記録フォーム） ----
+// ---- 出荷先カード ----
 function renderDestCards() {
   const wrap = $('dest-cards');
   wrap.innerHTML = settings.destinations.map((dest, i) => `
@@ -457,10 +394,7 @@ function renderDestCards() {
           <div><label class="lbl">販売本数（自動）</label><input type="number" id="ds-${i}-sold" class="readonly-val" readonly placeholder="—"></div>
           <div><label class="lbl">単価 (円/本)</label><input type="number" id="ds-${i}-price" min="0" value="${dest.price}" oninput="calcDest(${i})"></div>
         </div>
-        <div class="field">
-          <label class="lbl">売上（自動）</label>
-          <input type="number" id="ds-${i}-sales" class="readonly-val" readonly placeholder="—">
-        </div>
+        <div class="field"><label class="lbl">売上（自動）</label><input type="number" id="ds-${i}-sales" class="readonly-val" readonly placeholder="—"></div>
       </div>
     </div>
   `).join('');
@@ -476,10 +410,8 @@ function toggleDestCard(i) {
   toggle.classList.toggle('on', !isOpen);
   header.classList.toggle('active', !isOpen);
   if (!isOpen) {
-    // 開いたら単価をデフォルトにセット
     if (!$(`ds-${i}-price`).value) $(`ds-${i}-price`).value = settings.destinations[i].price;
   } else {
-    // 閉じたら値をクリア
     [`ds-${i}-ship`,`ds-${i}-stock`,`ds-${i}-sold`,`ds-${i}-sales`].forEach(id => $(id).value = '');
     $(`dest-mini-${i}`).textContent = '';
     calcTotal();
@@ -512,51 +444,8 @@ function calcTotal() {
   $('sales-dest-summary').textContent = parts.length ? parts.join(' + ') : '出荷先を選択してください';
 }
 
-// ---- GAS送信 ----
-async function sendToSheet(data) {
-  const url = settings.gasUrl;
-  if (!url) return;
-  setSync('sending', '⏳ シートに送信中…');
-  try {
-    // iframeを使ってGASにPOSTする（CORS回避）
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = url;
-    form.target = 'gas-iframe';
-    form.style.display = 'none';
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'payload';
-    input.value = JSON.stringify(data);
-    form.appendChild(input);
-    let iframe = document.getElementById('gas-iframe');
-    if (!iframe) {
-      iframe = document.createElement('iframe');
-      iframe.name = 'gas-iframe';
-      iframe.id = 'gas-iframe';
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-    }
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
-    setTimeout(() => setSync('ok', '✅ スプレッドシートに記録しました'), 2000);
-  } catch(e) {
-    setSync('err', '⚠️ 送信失敗（ローカルには保存済み）');
-  }
-  setTimeout(() => setSync('', ''), 4000);
-}
-function setSync(cls, msg) {
-  const el = $('sync-status');
-  el.className = 'sync-status'+(cls?' '+cls:'');
-  el.textContent = msg;
-}
-
-// ---- 保存 ----
-async function saveRecord() {
-  const date = $('inp-date').value;
-  if (!date) { alert('日付を入力してください'); return; }
-
+// ---- レコード収集 ----
+function collectRecord(date) {
   const destData = [];
   settings.destinations.forEach((dest, i) => {
     const isOpen = $(`dest-fields-${i}`)?.classList.contains('open');
@@ -568,32 +457,61 @@ async function saveRecord() {
       destData.push({ name: dest.name, ship, stock, sold, price, sales: sold * price });
     }
   });
-
-  const totalSales = destData.reduce((s, d) => s + d.sales, 0);
-  const rec = {
+  return {
     id: Date.now(), date,
     pollination: n($('inp-pollination').value),
     harvest: n($('inp-harvest').value),
     destinations: destData,
-    total_sales: totalSales,
-    note: $('inp-note').value.trim()
+    total_sales: destData.reduce((s,d) => s+d.sales, 0),
+    note: $('inp-note').value.trim(),
+    sent: false
   };
+}
 
-  // 同じ日は上書き
-  const existing = records.findIndex(r => r.date === date);
+function storeRecord(rec) {
+  const existing = records.findIndex(r => r.date === rec.date);
   if (existing !== -1) { rec.id = records[existing].id; records[existing] = rec; }
   else records.push(rec);
   records.sort((a,b) => b.date.localeCompare(a.date));
   saveRec();
+}
 
-  // リセット
+function resetForm() {
   $('inp-harvest').value = ''; $('inp-pollination').value = ''; $('inp-note').value = '';
   $('inp-date').value = todayStr();
   renderDestCards();
+}
 
-  // GAS送信（案C：1行目に収穫・受粉、以降は出荷先ごと）
+// ---- 一時保存 ----
+function tempSave() {
+  const date = $('inp-date').value;
+  if (!date) { alert('日付を入力してください'); return; }
+  const rec = collectRecord(date);
+  storeRecord(rec);
+  resetForm();
+  setSync('', '💾 一時保存しました（未送信）');
+  setTimeout(() => setSync('',''), 3000);
+}
+
+// ---- 確定送信 ----
+async function confirmSave() {
+  const date = $('inp-date').value;
+  if (!date) { alert('日付を入力してください'); return; }
+  const rec = collectRecord(date);
+  rec.sent = true;
+  storeRecord(rec);
+  resetForm();
+  await sendToSheet(rec);
+}
+
+// ---- GAS送信 ----
+async function sendToSheet(rec) {
+  const url = settings.gasUrl;
+  if (!url) return;
+  setSync('sending', '⏳ シートに送信中…');
+
   const rows = [];
-  destData.forEach((d, i) => {
+  (rec.destinations||[]).forEach((d, i) => {
     rows.push({
       type: i === 0 ? '収穫+出荷' : '出荷',
       pollination: i === 0 ? rec.pollination : '',
@@ -606,27 +524,65 @@ async function saveRecord() {
   if (rows.length === 0) {
     rows.push({ type: '収穫のみ', pollination: rec.pollination, harvest: rec.harvest, dest:'', ship:'', stock:'', sold:'', price:'', sales:'', note: rec.note });
   }
-  await sendToSheet({ date, rows });
+
+  try {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = url;
+    form.target = 'gas-iframe';
+    form.style.display = 'none';
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'payload';
+    input.value = JSON.stringify({ date: rec.date, rows });
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+    setTimeout(() => setSync('ok', '✅ スプレッドシートに記録しました'), 2000);
+  } catch(e) {
+    // 送信失敗時はsentをfalseに戻す
+    const idx = records.findIndex(r => r.id === rec.id);
+    if (idx !== -1) { records[idx].sent = false; saveRec(); }
+    setSync('err', '⚠️ 送信失敗（一時保存済み）');
+  }
+  setTimeout(() => setSync('',''), 5000);
+}
+
+function setSync(cls, msg) {
+  const el = $('sync-status');
+  el.className = 'sync-status'+(cls?' '+cls:'');
+  el.textContent = msg;
+}
+
+// ---- 履歴から送信 ----
+async function sendRecord(id) {
+  const rec = records.find(r => r.id===id); if (!rec) return;
+  rec.sent = true;
+  saveRec();
+  renderHistory();
+  await sendToSheet(rec);
 }
 
 // ---- 集計 ----
 function updateSummary() {
   const today = todayStr();
   const w = new Date(); w.setDate(w.getDate()-6);
-  const weekStr = w.toISOString().slice(0, 10);
+  const weekStr = w.toISOString().slice(0,10);
 
   const agg = (filter) => {
-    let p=0,h=0,tt=0;
+    let p=0, h=0, totalSold=0, tt=0;
     const destMap = {};
     records.filter(filter).forEach(r => {
       p += r.pollination||0; h += r.harvest||0; tt += r.total_sales||0;
       (r.destinations||[]).forEach(d => {
+        totalSold += d.sold||0;
         if (!destMap[d.name]) destMap[d.name] = { sold:0, sales:0 };
         destMap[d.name].sold += d.sold||0;
         destMap[d.name].sales += d.sales||0;
       });
     });
-    return { p, h, tt, destMap };
+    return { p, h, totalSold, tt, destMap };
   };
 
   const ta = agg(r => r.date === today);
@@ -639,6 +595,7 @@ function updateSummary() {
     let html = `
       <div class="s-row"><span class="s-lbl">🌸 受粉</span><span class="s-val purple">${bn(data.p)}</span></div>
       <div class="s-row"><span class="s-lbl">収穫</span><span class="s-val green">${bn(data.h)}</span></div>
+      <div class="s-row"><span class="s-lbl">販売合計</span><span class="s-val green">${bn(data.totalSold)}</span></div>
       <div class="s-divider"></div>`;
     Object.entries(data.destMap).forEach(([name, d]) => {
       html += `
@@ -660,9 +617,12 @@ function renderHistory() {
   const el = $('log-list');
   if (!records.length) { el.innerHTML='<div class="empty"><div class="ico">🥒</div>まだ記録がありません</div>'; return; }
   el.innerHTML = records.map(r => `
-    <div class="log-item">
+    <div class="log-item ${r.sent ? '' : 'unsent'}">
       <div class="log-header">
-        <div class="log-date">${fmtDate(r.date)}</div>
+        <div class="log-date">
+          ${fmtDate(r.date)}
+          ${r.sent ? '' : '<span class="unsent-badge">未送信</span>'}
+        </div>
         <div class="log-total-sales">¥${(r.total_sales||0).toLocaleString()}</div>
       </div>
       <div class="log-basic">
@@ -682,6 +642,7 @@ function renderHistory() {
       ${r.note ? `<div class="log-note">📝 ${r.note}</div>` : ''}
       <div class="log-actions">
         <button class="btn-edit" onclick="openEdit(${r.id})">編集</button>
+        ${!r.sent ? `<button class="btn-send" onclick="sendRecord(${r.id})">📤 送信</button>` : ''}
         <button class="btn-del" onclick="openDelete(${r.id},'${r.date}')">削除</button>
       </div>
     </div>
@@ -702,10 +663,8 @@ function openEdit(id) {
   $('edit-harvest').value = r.harvest||0;
   $('edit-note').value = r.note||'';
 
-  // 出荷先セクション生成
   const saved = r.destinations || [];
   const allDests = settings.destinations.map(d => d.name);
-  // 保存済みにある出荷先 + 設定にある出荷先のunion
   const editDests = [...new Set([...saved.map(d=>d.name), ...allDests])];
 
   $('edit-dest-sections').innerHTML = editDests.map(name => {
@@ -738,18 +697,17 @@ function editCalcDest(name) {
   $(`ed-${name}-sales`).value = sold * price;
 }
 
-function updateRecord() {
+function updateRecord(shouldSend) {
   const id = parseInt($('edit-id').value);
   const idx = records.findIndex(r => r.id===id); if (idx===-1) return;
 
-  const allDests = settings.destinations.map(d => d.name);
   const saved = records[idx].destinations || [];
+  const allDests = settings.destinations.map(d => d.name);
   const editDests = [...new Set([...saved.map(d=>d.name), ...allDests])];
 
   const destData = [];
   editDests.forEach(name => {
-    const shipEl = $(`ed-${name}-ship`);
-    if (!shipEl) return;
+    const shipEl = $(`ed-${name}-ship`); if (!shipEl) return;
     const ship = n(shipEl.value), stock = n($(`ed-${name}-stock`).value);
     const price = n($(`ed-${name}-price`).value);
     if (ship > 0 || stock > 0) {
@@ -765,10 +723,14 @@ function updateRecord() {
     harvest: n($('edit-harvest').value),
     destinations: destData,
     total_sales: destData.reduce((s,d) => s+d.sales, 0),
-    note: $('edit-note').value.trim()
+    note: $('edit-note').value.trim(),
+    sent: shouldSend
   };
   records.sort((a,b) => b.date.localeCompare(a.date));
-  saveRec(); closeModal('edit-overlay'); renderHistory();
+  saveRec();
+  closeModal('edit-overlay');
+  renderHistory();
+  if (shouldSend) sendToSheet(records.find(r => r.id===id));
 }
 
 // ---- 削除 ----
@@ -785,41 +747,24 @@ function confirmDelete() {
 // ---- 設定 ----
 function renderDestSettings() {
   const el = $('dest-settings-list');
-  if (!settings.destinations.length) {
-    el.innerHTML = '<div style="font-size:0.85rem;color:var(--text-muted);padding:8px 0;">登録なし</div>';
-    return;
-  }
+  if (!settings.destinations.length) { el.innerHTML='<div style="font-size:0.85rem;color:var(--text-muted);padding:8px 0;">登録なし</div>'; return; }
   el.innerHTML = settings.destinations.map((d,i) => `
     <div class="dest-setting-item">
       <div class="dest-setting-name">${d.name}</div>
-      <input type="number" class="dest-setting-price" value="${d.price}" min="0"
-        oninput="updateDestPrice(${i}, this.value)" placeholder="単価">
+      <input type="number" class="dest-setting-price" value="${d.price}" min="0" oninput="updateDestPrice(${i},this.value)" placeholder="単価">
       <span style="font-size:0.8rem;color:var(--text-muted);">円</span>
       <button class="btn-rm" onclick="removeDest(${i})">削除</button>
     </div>`).join('');
 }
-function updateDestPrice(i, val) {
-  settings.destinations[i].price = n(val);
-  saveCfg();
-}
+function updateDestPrice(i, val) { settings.destinations[i].price = n(val); saveCfg(); }
 function addDest() {
-  const name = $('new-dest-name').value.trim();
-  const price = n($('new-dest-price').value);
-  if (!name) return;
-  if (!settings.destinations.find(d => d.name === name)) {
-    settings.destinations.push({ name, price: price || 150 });
-    saveCfg();
-  }
-  $('new-dest-name').value = ''; $('new-dest-price').value = '';
+  const name = $('new-dest-name').value.trim(); if (!name) return;
+  if (!settings.destinations.find(d => d.name===name)) settings.destinations.push({ name, price: n($('new-dest-price').value) || 150 });
+  saveCfg(); $('new-dest-name').value=''; $('new-dest-price').value='';
   renderDestSettings(); renderDestCards();
 }
-function removeDest(i) {
-  settings.destinations.splice(i, 1); saveCfg();
-  renderDestSettings(); renderDestCards();
-}
-function saveSettings() {
-  settings.gasUrl = $('set-gas-url').value.trim(); saveCfg();
-}
+function removeDest(i) { settings.destinations.splice(i,1); saveCfg(); renderDestSettings(); renderDestCards(); }
+function saveSettings() { settings.gasUrl = $('set-gas-url').value.trim(); saveCfg(); }
 
 // ---- モーダル ----
 function closeModal(id) { $(id).classList.remove('open'); }
